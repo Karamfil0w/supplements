@@ -12,7 +12,7 @@ public class Product {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Category category;  //name, category, size, flavour, description, imageURL, price, soldOut
     @Column(nullable = false)
     private Double size;

@@ -1,6 +1,5 @@
 package com.example.supplements.model.dtos;
 
-import com.example.supplements.model.enums.CategoryEnum;
 import com.example.supplements.model.enums.FlavourEnum;
 
 import java.math.BigDecimal;
@@ -9,7 +8,7 @@ public class ProductDetailDto {
     private Long id;
     private String name;
     private Double size;
-    private CategoryEnum category;
+    private String category;
     private FlavourEnum flavor;
     private String description;
     private String imageURL;
@@ -96,11 +95,11 @@ public class ProductDetailDto {
         SoldOut = soldOut;
     }
 
-    public CategoryEnum getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryEnum category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.supplements.services;
 
 import com.example.supplements.model.dtos.ProductDetailDto;
+import com.example.supplements.model.entities.Category;
 import com.example.supplements.model.entities.Product;
 import com.example.supplements.model.entities.User;
 import com.example.supplements.model.enums.CategoryEnum;
@@ -14,14 +15,16 @@ import java.util.List;
 
 @Service
 public class ProductService {
-private final UserRepository userRepository;
-    private final ProductRepository productRepository ;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
+    private final CategoryService categoryService;
 
-    public ProductService(UserRepository userRepository, ProductRepository productRepository, ModelMapper modelMapper) {
+    public ProductService(UserRepository userRepository, ProductRepository productRepository, ModelMapper modelMapper, CategoryService categoryService) {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
+        this.categoryService = categoryService;
     }
 
     private boolean isAdmin(User user) {
@@ -33,10 +36,13 @@ private final UserRepository userRepository;
     public void addProduct(ProductDetailDto productDetailDto) {
 
         Product product = this.modelMapper.map(productDetailDto, Product.class);
+        CategoryEnum type = CategoryEnum.valueOf(productDetailDto.getCategory());
+        Category category = new Category(type);
+        product.setCategory(category);
         productRepository.save(product);
     }
 
-    public List<Product> top3Proteins(){
+    public List<Product> top3Proteins() {
         return this.productRepository.findAllByCategory_Type(CategoryEnum.PROTEIN);
     }
 

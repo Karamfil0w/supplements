@@ -31,10 +31,10 @@
                 th:field="*{category}"
                 name="category" required>
             <option value="" selected>-- Select category --</option>
-            <option value="PROTEIN">Protein</option>
-            <option value="PERFORMANCE">Performance</option>
-            <option value="WEIGHT_MANAGEMENT">Weight Management</option>
-            <option value="VITAMINS">Vitamins</option>
+            <option th:value="PROTEIN">Protein</option>
+            <option th:value="PERFORMANCE">Performance</option>
+            <option th:value="WEIGHT_MANAGEMENT">Weight Management</option>
+            <option th:value="VITAMINS">Vitamins</option>
         </select>
     </div>
     <div>
@@ -49,13 +49,13 @@
                 th:field="*{flavor}"
                 name="flavour" required>
             <option value="">-- Select flavour --</option>
-            <option value="UNFLAVORED">Unflavored</option>
-            <option value="CHOCOLATE">Chocolate</option>
-            <option value="WHITE_CHOCOLATE">White Chocolate</option>
-            <option value="STRAWBERRY">Strawberry</option>
-            <option value="BANANA">Banana</option>
-            <option value="COOKIES_AND_CREAM">Cookies and Cream</option>
-            <option value="PEANUT_BUTTER">Peanut Butter</option>
+            <option th:value="UNFLAVORED">Unflavored</option>
+            <option th:value="CHOCOLATE">Chocolate</option>
+            <option th:value="WHITE_CHOCOLATE">White Chocolate</option>
+            <option th:value="STRAWBERRY">Strawberry</option>
+            <option th:value="BANANA">Banana</option>
+            <option th:value="COOKIES_AND_CREAM">Cookies and Cream</option>
+            <option th:value="PEANUT_BUTTER">Peanut Butter</option>
         </select>
     </div>
     <div>

@@ -182,11 +182,6 @@ input[type="submit"]:hover {
     height: 100%;
     z-index: -1;
 }
-body {
-    background-image: url('/static/images/2.jpg');
-    background-size: cover;
-    background-position: center;
-}
 
 .container {
     width: 400px;
