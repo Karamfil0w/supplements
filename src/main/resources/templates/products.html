@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/products" class="active">Products</a></li>
+        <li><a href="/addProduct">Add Product</a></li>
+        <li><a href="/cart">Cart</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+<h1>Products</h1>
+
+<h2>Protein</h2>
+<ul>
+    <li th:each="product : ${proteinProducts}">
+        <span th:text="${product.name}"></span> - <span th:text="${product.price}"></span>
+        <form th:action="@{/cart/add}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}" />
+            <button type="submit">Add to Cart</button>
+        </form>
+    </li>
+</ul>
+
+<h2>Performance</h2>
+<ul>
+    <li th:each="product : ${performanceProducts}">
+        <span th:text="${product.name}"></span> - <span th:text="${product.price}"></span>
+        <form th:action="@{/cart/add}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}" />
+            <button type="submit">Add to Cart</button>
+        </form>
+    </li>
+</ul>
+
+<h2>Weight Management</h2>
+<ul>
+    <li th:each="product : ${weightManagementProducts}">
+        <span th:text="${product.name}"></span> - <span th:text="${product.price}"></span>
+        <form th:action="@{/cart/add}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}" />
+            <button type="submit">Add to Cart</button>
+        </form>
+    </li>
+</ul>
+
+<h2>Vitamins</h2>
+<ul>
+    <li th:each="product : ${vitaminProducts}">
+        <span th:text="${product.name}"></span> - <span th:text="${product.price}"></span>
+        <form th:action="@{/cart/add}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}" />
+            <button type="submit">Add to Cart</button>
+        </form>
+    </li>
+</ul>
+
+</body>
+</html>

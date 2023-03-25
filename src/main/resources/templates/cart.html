@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/products">Products</a></li>
+    </ul>
+</nav>
+
+<h1>Shopping Cart</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cart.items}">
+        <td th:text="${item.product.name}"></td>
+        <td th:text="${item.product.price}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.quantity * item.product.price}"></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3">Subtotal:</td>
+        <td th:text="${cart.subtotal}"></td>
+    </tr>
+    <tr>
+        <td colspan="3">Tax:</td>
+        <td th:text="${cart.tax}"></td>
+    </tr>
+    <tr>
+        <td colspan="3">Total:</td>
+        <td th:text="${cart.total}"></td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>
