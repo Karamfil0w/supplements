@@ -19,7 +19,7 @@
     </ul>
 </nav>
 
-<h1>Welcome, Admin </h1>
+<h1>Welcome!!! </h1>
 
 <h3>Here are some of our bestsellers products:</h3>
 
@@ -27,8 +27,9 @@
     <div class="product">
         <h2 th:text="${protein.name}"></h2>
         <p th:text="${protein.description}">Description of Product 1</p>
-        <p th:text="${protein.price}">Price: $XX.XX</p>
-        <button>Add to Cart</button>
+        <p th:text= "${protein.price}">Price: $XX.XX</p>
+        <button> <a th:href="@{/addToCart/{id}(id=${protein.id})}">Add to Cart</a> </button>
+
     </div>
 
     <div class="product">

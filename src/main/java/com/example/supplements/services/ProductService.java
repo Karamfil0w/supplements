@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -19,12 +20,14 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
     private final CategoryService categoryService;
+    private final ShoppingCartService cartService;
 
-    public ProductService(UserRepository userRepository, ProductRepository productRepository, ModelMapper modelMapper, CategoryService categoryService) {
+    public ProductService(UserRepository userRepository, ProductRepository productRepository, ModelMapper modelMapper, CategoryService categoryService, ShoppingCartService cartService) {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
         this.categoryService = categoryService;
+        this.cartService = cartService;
     }
 
     private boolean isAdmin(User user) {
@@ -45,6 +48,11 @@ public class ProductService {
     public List<Product> top3Proteins() {
         return this.productRepository.findAllByCategory_Type(CategoryEnum.PROTEIN);
     }
+
+    public Optional<Product> getProductById(Long productId) {
+        return this.productRepository.findById(productId);
+    }
+
 
 //    public Page<ProductDetailDto> getAllProducts(Pageable pageable) {
 //

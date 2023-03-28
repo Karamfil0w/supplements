@@ -25,6 +25,7 @@ public class UserService {
         user.setEmail(registrationDTO.getEmail());
         user.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
 
+
         userRepository.save(user);
 
     }

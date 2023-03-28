@@ -1,21 +1,24 @@
 package com.example.supplements.model.entities;
+
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+
 import java.util.List;
+import java.util.Optional;
 
 @Entity
-@Table()
+@Table(name = "shopping_cart")
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "shopping_cart_id")
     private Long id;
 
-    @OneToMany(mappedBy = "shoppingCart",
-            fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "shoppingCarts")
     private List<Product> products;
 
-    @Column(nullable = false)
-    private BigDecimal totalPrice;
+    @OneToOne
+    private User user;
+
 
     public ShoppingCart() {
     }
@@ -36,11 +39,10 @@ public class ShoppingCart {
         this.products = products;
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
+
+    public void addProduct(Optional<Product> product, int quantity) {
+        List<Product> currentProducts = getProducts();
+        currentProducts.add(product.get());
     }
 }

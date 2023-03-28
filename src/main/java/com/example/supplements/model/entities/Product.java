@@ -1,8 +1,10 @@
 package com.example.supplements.model.entities;
+
 import com.example.supplements.model.enums.FlavourEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -28,10 +30,8 @@ public class Product {
     @Column(nullable = false)
     private boolean SoldOut;
 
-    @ManyToOne
-    private ShoppingCart shoppingCart;
-
-
+    @ManyToMany
+    private List<ShoppingCart> shoppingCarts;
     public Product() {
     }
 
@@ -89,14 +89,6 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
-    }
-
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
     }
 
     public boolean isSoldOut() {
