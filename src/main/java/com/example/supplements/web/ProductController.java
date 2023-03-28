@@ -24,6 +24,8 @@ public class ProductController {
         return "/products";
     }
 
+
+
     @GetMapping("/addProduct")
     public String addProduct(){
         return "/addProduct";
