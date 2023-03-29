@@ -30,25 +30,24 @@
         <p th:text="${protein.price}">Price: $XX.XX</p>
         <button><a th:href="@{/addToCart/{id}(id=${protein.id})}">Add to Cart</a></button>
     </div>
-    <div th:each="perform: ${performance}" class="product">
-        <h2 th:text="${perform.name}">Product 2</h2>
-        <p th:text="${perform.description}">Description of Product 2</p>
-        <p th:text="${perform.price}">Price: $XX.XX</p>
-        <button><a th:href="@{/addToCart/{id}(id=${perform.id})}">Add to Cart</a></button>
-    </div>
-    <div th:each="weight: ${weightManagement}" class="product">
-        <h2 th:text="${weight.name}">Product 2</h2>
-        <p th:text="${weight.description}">Description of Product 2</p>
-        <p th:text="${weight.price}">Price: $XX.XX</p>
-        <button><a th:href="@{/addToCart/{id}(id=${weight.id})}">Add to Cart</a></button>
-    </div>
-    <div th:each="vitamin: ${vitamins}" class="product">
-        <h2 th:text="${vitamin.name}">Product 2</h2>
-        <p th:text="${vitamin.description}">Description of Product 2</p>
-        <p th:text="${vitamin.price}">Price: $XX.XX</p>
-        <button><a th:href="@{/addToCart/{id}(id=${vitamin.id})}">Add to Cart</a></button>
-    </div>
-
+</div>
+<div th:each="perform: ${performance}" class="product">
+    <h2 th:text="${perform.name}">Product 2</h2>
+    <p th:text="${perform.description}">Description of Product 2</p>
+    <p th:text="${perform.price}">Price: $XX.XX</p>
+    <button><a th:href="@{/addToCart/{id}(id=${perform.id})}">Add to Cart</a></button>
+</div>
+<div th:each="weight: ${weightManagement}" class="product">
+    <h2 th:text="${weight.name}">Product 2</h2>
+    <p th:text="${weight.description}">Description of Product 2</p>
+    <p th:text="${weight.price}">Price: $XX.XX</p>
+    <button><a th:href="@{/addToCart/{id}(id=${weight.id})}">Add to Cart</a></button>
+</div>
+<div th:each="vitamin: ${vitamins}" class="product">
+    <h2 th:text="${vitamin.name}">Product 2</h2>
+    <p th:text="${vitamin.description}">Description of Product 2</p>
+    <p th:text="${vitamin.price}">Price: $XX.XX</p>
+    <button><a th:href="@{/addToCart/{id}(id=${vitamin.id})}">Add to Cart</a></button>
 </div>
 </body>
 

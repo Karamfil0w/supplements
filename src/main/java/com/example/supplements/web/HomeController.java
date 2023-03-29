@@ -20,8 +20,11 @@ public class HomeController {
     public String home(Model model){
 
         model.addAttribute("proteins",productService.findAllProteins());
+
         model.addAttribute("performance",productService.findAllPerformance());
+
         model.addAttribute("weightManagement",productService.findAllWeightManagement());
+
         model.addAttribute("vitamins",productService.findAllVitamins());
 
         return "home";
