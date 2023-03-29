@@ -11,7 +11,7 @@
 <body>
 <nav>
     <ul>
-        <li><a href="/home">Home</a></li>
+        <li><a href="/home" class="active">Home</a></li>
         <li><a href="/products">Products</a></li>
         <li><a href="/addProduct">Add Product</a></li>
         <li><a href="/cart">Cart</a></li>
@@ -23,28 +23,32 @@
 
 <h3>Here are some of our bestsellers products:</h3>
 
-<div  th:each="protein: ${proteins}" class="products">
+<div th:each="protein: ${proteins}" class="products">
     <div class="product">
         <h2 th:text="${protein.name}"></h2>
         <p th:text="${protein.description}">Description of Product 1</p>
-        <p th:text= "${protein.price}">Price: $XX.XX</p>
-        <button> <a th:href="@{/addToCart/{id}(id=${protein.id})}">Add to Cart</a> </button>
-
+        <p th:text="${protein.price}">Price: $XX.XX</p>
+        <button><a th:href="@{/addToCart/{id}(id=${protein.id})}">Add to Cart</a></button>
+    </div>
+    <div th:each="perform: ${performance}" class="product">
+        <h2 th:text="${perform.name}">Product 2</h2>
+        <p th:text="${perform.description}">Description of Product 2</p>
+        <p th:text="${perform.price}">Price: $XX.XX</p>
+        <button><a th:href="@{/addToCart/{id}(id=${perform.id})}">Add to Cart</a></button>
+    </div>
+    <div th:each="weight: ${weightManagement}" class="product">
+        <h2 th:text="${weight.name}">Product 2</h2>
+        <p th:text="${weight.description}">Description of Product 2</p>
+        <p th:text="${weight.price}">Price: $XX.XX</p>
+        <button><a th:href="@{/addToCart/{id}(id=${weight.id})}">Add to Cart</a></button>
+    </div>
+    <div th:each="vitamin: ${vitamins}" class="product">
+        <h2 th:text="${vitamin.name}">Product 2</h2>
+        <p th:text="${vitamin.description}">Description of Product 2</p>
+        <p th:text="${vitamin.price}">Price: $XX.XX</p>
+        <button><a th:href="@{/addToCart/{id}(id=${vitamin.id})}">Add to Cart</a></button>
     </div>
 
-    <div class="product">
-        <h2>Product 2</h2>
-        <p>Description of Product 2</p>
-        <p>Price: $XX.XX</p>
-        <button>Add to Cart</button>
-    </div>
-
-    <div class="product">
-        <h2>Product 3</h2>
-        <p>Description of Product 3</p>
-        <p>Price: $XX.XX</p>
-        <button>Add to Cart</button>
-    </div>
 </div>
 </body>
 

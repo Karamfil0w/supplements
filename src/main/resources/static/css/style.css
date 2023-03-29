@@ -71,6 +71,11 @@ nav {
     overflow: hidden;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -98,38 +103,62 @@ nav a:hover {
 nav .active {
     background-color: #4CAF50;
 }
-nav {
-    background-color: #333;
-    overflow: hidden;
-}
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-}
 
-nav li {
-    display: inline-block;
-}
-
-nav a {
-    display: block;
-    color: white;
+h1 {
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    margin-top: 50px;
+}
+table {
+    margin: 50px auto;
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 1000px;
+}
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+table th {
+    background-color: #f2f2f2;
+}
+table td {
+    vertical-align: top;
 }
 
-nav a:hover {
-    background-color: #111;
+tfoot {
+    background-color: #f2f2f2;
+    font-weight: bold;
 }
 
-nav .active {
+tfoot tr td {
+    padding: 10px;
+    text-align: right;
+}
+
+tfoot tr:last-child {
     background-color: #4CAF50;
+    color: white;
 }
+button[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+
 
 h1 {
     text-align: center;
@@ -171,7 +200,7 @@ input[type="submit"]:hover {
     background-color: #3e8e41;
 }
 .background-image {
-    background-image: url('/resources/static/images/1.jpg');
+    background-image: url('/static/images/1.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

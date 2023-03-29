@@ -19,6 +19,11 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping("/restock")
+    public String restock(){
+        productService.restock();
+        return "redirect:/home";
+    }
     @GetMapping("/products")
     public String products(){
         return "/products";

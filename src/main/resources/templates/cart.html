@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
 </head>
 <body>
 <nav>
     <ul>
         <li><a href="/home">Home</a></li>
-        <li><a href="/logout">Logout</a></li>
         <li><a href="/products">Products</a></li>
+        <li><a href="/cart" class="active">Cart</a></li>
+        <li><a href="/logout">Logout</a></li>
     </ul>
 </nav>
 
@@ -35,10 +36,9 @@
     </tr>
     </tbody>
     <tfoot>
-
-    <tr th:text="${totalSum}">
-        <td colspan="3">Total:</td>
-        <td></td>
+    <tr>
+        <td colspan="4" style="text-align: right;">Total:</td>
+        <td th:text="${totalSum}"></td>
     </tr>
     </tfoot>
 </table>

@@ -13,5 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>,
         JpaSpecificationExecutor<Product> {
 
 
-    List<Product> findAllByCategory_Type(CategoryEnum categoryEnum);
+    List<Product> findByCategoryType(CategoryEnum categoryEnum);
+
 }
