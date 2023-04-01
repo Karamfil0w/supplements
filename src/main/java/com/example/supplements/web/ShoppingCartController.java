@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -63,17 +66,27 @@ public class ShoppingCartController {
 //        return "redirect:/cart";
 //    }
 
-//    @PostMapping("/cart/remove/{productId}")
+//    @PostMapping("/remove/{productId}")
 //    public String removeFromCart(@PathVariable("productId") Long productId,
 //                                 HttpSession session) {
 //        Optional<Product> product = productService.getProductById(productId);
 //        if (product.isPresent()) {
 //            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 //            if (cart != null) {
-//                cart.removeItem(product);
+//                cart.(product);
 //            }
 //        }
 //        return "redirect:/cart";
 //    }
-//}
+@PostMapping("/remove")
+public String removeItem(@RequestParam("id") Long productId, HttpSession session) {
+    ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+    if (cart != null) {
+        List<Product> products = cart.getProducts();
+        products.removeIf(p -> p.getId().equals(productId));
+        session.setAttribute("cart", cart);
+    }
+    return "redirect:/cart";
+}
+
 }

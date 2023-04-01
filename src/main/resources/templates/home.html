@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -13,13 +14,13 @@
     <ul>
         <li><a href="/home" class="active">Home</a></li>
         <li><a href="/products">Products</a></li>
-        <li><a href="/addProduct">Add Product</a></li>
+        <li sec:authorize="hasRole('ADMIN')"><a href="/addProduct">Add Product</a></li>
         <li><a href="/cart">Cart</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a th:href="@{/logout}">Logout</a></li>
     </ul>
 </nav>
 
-<h1>Welcome!!! </h1>
+<h1>Welcome, <th:block th:text="${#authentication.principal.username}">X</th:block> ! </h1>
 
 <h3>Here are some of our bestsellers products:</h3>
 

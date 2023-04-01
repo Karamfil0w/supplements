@@ -1,6 +1,7 @@
 package com.example.supplements.model.entities;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "shopping_cart")
+@Transactional
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
