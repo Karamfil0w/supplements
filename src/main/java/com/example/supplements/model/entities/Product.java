@@ -4,7 +4,6 @@ import com.example.supplements.model.enums.FlavourEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -30,8 +29,6 @@ public class Product {
     @Column(nullable = false)
     private boolean SoldOut;
 
-    @ManyToMany
-    private List<ShoppingCart> shoppingCarts;
     public Product() {
     }
 

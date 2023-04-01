@@ -17,7 +17,7 @@ public class ShoppingCart {
     @Column(name = "shopping_cart_id")
     private Long id;
 
-    @ManyToMany(mappedBy = "shoppingCarts")
+    @Transient
     private List<Product> products = new ArrayList<>();
 
     @OneToOne
