@@ -21,12 +21,14 @@ public class CreateProductDto {
 
     private boolean SoldOut;
 
+    private int quantity;
+
     public CreateProductDto() {
     }
 
     public CreateProductDto(String name, CategoryEnum category,
                             Double size, FlavourEnum flavor,
-                            String description, String imageURL, BigDecimal price, boolean soldOut) {
+                            String description, String imageURL, BigDecimal price, boolean soldOut, int quantity) {
         this.name = name;
         this.category = category;
         this.size = size;
@@ -35,6 +37,7 @@ public class CreateProductDto {
         this.imageURL = imageURL;
         this.price = price;
         SoldOut = soldOut;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -99,5 +102,13 @@ public class CreateProductDto {
 
     public void setSoldOut(boolean soldOut) {
         SoldOut = soldOut;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

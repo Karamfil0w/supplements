@@ -26,10 +26,19 @@ public class Product {
     private String imageURL;
     @Column(nullable = false)
     private BigDecimal price;
+
+    private int quantity;
     @Column(nullable = false)
     private boolean SoldOut;
 
+    @ManyToOne
+    private Order order;
+
     public Product() {
+    }
+
+    public Product(Order order) {
+        this.order = order;
     }
 
     public Long getId() {
@@ -102,5 +111,21 @@ public class Product {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

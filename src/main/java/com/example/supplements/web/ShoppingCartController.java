@@ -49,35 +49,9 @@ public class ShoppingCartController {
             }
             cart.addProduct(product);
         }
-        return "redirect:/cart";
+        return "redirect:/home";
     }
 
-//    @PostMapping("/cart/update/{productId}")
-//    public String updateCart(@PathVariable("productId") Long productId,
-//                             @RequestParam("quantity") int quantity,
-//                             HttpSession session) {
-//        Optional<Product> product = productService.getProductById(productId);
-//        if (product.isPresent()) {
-//            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-//            if (cart != null) {
-//                cart.updateItemQuantity(product, quantity);
-//            }
-//        }
-//        return "redirect:/cart";
-//    }
-
-//    @PostMapping("/remove/{productId}")
-//    public String removeFromCart(@PathVariable("productId") Long productId,
-//                                 HttpSession session) {
-//        Optional<Product> product = productService.getProductById(productId);
-//        if (product.isPresent()) {
-//            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-//            if (cart != null) {
-//                cart.(product);
-//            }
-//        }
-//        return "redirect:/cart";
-//    }
 @PostMapping("/remove")
 public String removeItem(@RequestParam("id") Long productId, HttpSession session) {
     ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");

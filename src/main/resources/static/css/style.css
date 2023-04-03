@@ -4,18 +4,22 @@ body {
     margin: 0;
     padding: 0;
 }
+
 h1, h2, h3 {
     color: #222;
 }
+
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 a {
     color: #222;
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
@@ -26,6 +30,7 @@ header {
     color: #fff;
     padding: 20px;
 }
+
 header h1 {
     margin: 0;
 }
@@ -34,20 +39,14 @@ header h1 {
 main {
     margin: 20px;
 }
-.product {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 10px;
-}
-.product h3 {
-    margin: 0;
-}
-.product p {
-    margin: 0;
-}
+
 .category {
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .category a {
     display: inline-block;
     background-color: #f2f2f2;
@@ -55,6 +54,7 @@ main {
     padding: 10px;
     margin-right: 10px;
 }
+
 .category a:hover {
     background-color: #ddd;
 }
@@ -66,6 +66,7 @@ footer {
     padding: 10px;
     text-align: center;
 }
+
 nav {
     background-color: #333;
     overflow: hidden;
@@ -76,6 +77,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -105,24 +107,28 @@ nav .active {
 }
 
 
-h1 {
+h1,h2,h3,p {
     text-align: center;
     margin-top: 50px;
 }
+
 table {
     margin: 50px auto;
     border-collapse: collapse;
     width: 80%;
     max-width: 1000px;
 }
+
 table th, table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
 }
+
 table th {
     background-color: #f2f2f2;
 }
+
 table td {
     vertical-align: top;
 }
@@ -141,6 +147,7 @@ tfoot tr:last-child {
     background-color: #4CAF50;
     color: white;
 }
+
 button[type="submit"] {
     background-color: #4CAF50;
     border: none;
@@ -197,6 +204,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #3e8e41;
 }
+
 .background-image {
     background-image: url('/static/images/1.jpg');
     background-position: center center;
@@ -266,29 +274,55 @@ body {
 h1 {
     margin: 30px;
 }
-
-.products {
+.products-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 30px;
+    justify-content: center;
 }
-
 .product {
-    background-color: #fff;
+    display: inline-block;
+    margin: 20px;
+    width: 200px;
+    height: 300px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: calc(33.33% - 20px);
-    margin-bottom: 20px;
-    padding: 20px;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.product h2 {
-    margin-top: 0;
+.product-image {
+    width: 100%;
+    height: 60%;
+    background-size: cover;
+    background-position: center;
 }
 
-.product p {
-    margin: 0;
+.mask {
+    width: 100%;
+    height: 30%;
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.mask-content {
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    transform: translateY(50%);
+    transition: all 0.3s ease;
+}
+
+.product:hover .mask {
+    opacity: 0.8;
+}
+
+.product:hover .mask-content {
+    transform: translateY(0);
 }
 
 button {

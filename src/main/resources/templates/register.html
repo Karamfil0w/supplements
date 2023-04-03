@@ -19,18 +19,30 @@
 
 <h1>Registration Form</h1>
 
-<form th:action="@{/register}" method="post">
+<form th:action="@{/register}" th:method="post" th:object="${userModel}">
   <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required>
+  <input type="text" id="username"
+         name="username" required
+         th:field="*{username}"
+         th:errorclass="is-invalid">
 
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
+  <input type="password" id="password"
+         name="password" required
+         th:field="*{password}"
+         th:errorclass="is-invalid">
 
   <label for="confirmPassword">Confirm Password:</label>
-  <input type="password" id="confirmPassword" name="confirmPassword" required>
+  <input type="password" id="confirmPassword"
+         name="confirmPassword" required
+         th:field="*{confirmPassword}"
+         th:errorclass="is-invalid"
+  >
 
   <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required>
+  <input type="email" id="email" name="email" required
+         th:field="*{email}"
+         th:errorclass="is-invalid">
 
   <input type="submit" value="Register">
 </form>
