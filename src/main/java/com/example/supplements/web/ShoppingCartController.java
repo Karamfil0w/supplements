@@ -3,7 +3,6 @@ package com.example.supplements.web;
 import com.example.supplements.model.entities.Product;
 import com.example.supplements.model.entities.ShoppingCart;
 import com.example.supplements.services.ProductService;
-import com.example.supplements.services.ShoppingCartService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ShoppingCartController {
     private final ProductService productService;
-    private final ShoppingCartService shoppingCartService;
 
-    public ShoppingCartController(ProductService productService, ShoppingCartService shoppingCartService) {
+    public ShoppingCartController(ProductService productService) {
         this.productService = productService;
-        this.shoppingCartService = shoppingCartService;
+
     }
 
     @GetMapping("/cart")
@@ -40,7 +37,7 @@ public class ShoppingCartController {
     @GetMapping("/addToCart/{productId}")
     public String addToCart(@PathVariable("productId") Long productId,
                             HttpSession session) {
-        Optional<Product> product = productService.getProductById(productId);
+        var product = productService.getProductById(productId);
         if (product.isPresent()) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart == null) {

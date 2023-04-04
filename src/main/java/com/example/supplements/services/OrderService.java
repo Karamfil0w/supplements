@@ -29,7 +29,6 @@ public class OrderService {
 
         order.setProducts(products);
 
-        // Save the order to the database
         orderRepository.save(order);
     }
 

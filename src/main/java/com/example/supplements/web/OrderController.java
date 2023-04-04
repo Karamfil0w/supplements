@@ -59,13 +59,5 @@ public class OrderController {
         return "redirect:/home";
     }
 
-
-//    private BigDecimal calculateOrderTotal(MakeOrderDto makeOrderDto) {
-//        BigDecimal total = BigDecimal.ZERO;
-//        for (ProductDto product : makeOrderDto.getProducts()) {
-//            total = total.add(product.getPrice());
-//        }
-//        return total;
-//    }
 }
 

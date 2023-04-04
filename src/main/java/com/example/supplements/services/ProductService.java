@@ -14,6 +14,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +48,39 @@ public class ProductService {
         Category category = new Category(type);
         product.setCategory(category);
         productRepository.save(product);
+    }
+
+    public List<Product> findTop5Proteins() {
+        List<Product> byCategoryTypeRandom5 = this.productRepository.findByCategoryType(CategoryEnum.PROTEIN);
+        //random shuffle
+        Collections.shuffle(byCategoryTypeRandom5);
+        return getProducts(byCategoryTypeRandom5);
+    }
+    public List<Product> findTop5Performance() {
+        List<Product> byCategoryTypeRandom5 = this.productRepository.findByCategoryType(CategoryEnum.PERFORMANCE);
+        Collections.shuffle(byCategoryTypeRandom5);
+        return getProducts(byCategoryTypeRandom5);
+    }
+    public List<Product> findTop5Weight_Management() {
+        List<Product> byCategoryTypeRandom5 = this.productRepository.findByCategoryType(CategoryEnum.WEIGHT_MANAGEMENT);
+        Collections.shuffle(byCategoryTypeRandom5);
+        return getProducts(byCategoryTypeRandom5);
+    }
+    public List<Product> findTop5Vitamins() {
+        List<Product> byCategoryTypeRandom5 = this.productRepository.findByCategoryType(CategoryEnum.VITAMINS);
+        Collections.shuffle(byCategoryTypeRandom5);
+        return getProducts(byCategoryTypeRandom5);
+    }
+
+    private static List<Product> getProducts(List<Product> byCategoryTypeRandom5) {
+        List<Product> random5proteins = new ArrayList<>();
+        for (Product product : byCategoryTypeRandom5) {
+            if (random5proteins.size()==5){
+                break;
+            }
+            random5proteins.add(product);
+        }
+        return random5proteins;
     }
 
     public List<Product> findAllProteins() {
@@ -129,14 +164,5 @@ public class ProductService {
             return true;
         }
     }
-
-
-//    public Page<ProductDetailDto> getAllProducts(Pageable pageable) {
-//
-//        return productRepository.
-//                findAll(pageable).
-//                map(modelMapper.map(Product.class,ProductDetailDto);
-//
-//    }
 
 }

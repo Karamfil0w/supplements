@@ -19,13 +19,13 @@ public class HomeController {
     @GetMapping("/home")
     public String home(Model model){
 
-        model.addAttribute("proteins",productService.findAllProteins());
+        model.addAttribute("TopProteins",productService.findTop5Proteins());
 
-        model.addAttribute("performance",productService.findAllPerformance());
+        model.addAttribute("TopPerformance",productService.findTop5Performance());
 
-        model.addAttribute("weightManagement",productService.findAllWeightManagement());
+        model.addAttribute("TopWeightManagement",productService.findTop5Weight_Management());
 
-        model.addAttribute("vitamins",productService.findAllVitamins());
+        model.addAttribute("TopVitamins",productService.findTop5Vitamins());
 
         return "home";
     }
