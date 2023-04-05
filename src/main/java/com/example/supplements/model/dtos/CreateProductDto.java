@@ -1,26 +1,32 @@
 package com.example.supplements.model.dtos;
 import com.example.supplements.model.enums.CategoryEnum;
 import com.example.supplements.model.enums.FlavourEnum;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
 public class CreateProductDto {
+    @NotBlank
+    @Size(min = 2)
     private String name;
 
+    @NotBlank
     private CategoryEnum category;
 
+    @NotBlank
     private Double size;
-
+    @NotBlank
     private FlavourEnum flavor;
-
+    @NotBlank
     private String description;
-
+    @NotBlank
     private String imageURL;
-
+    @NotBlank
     private BigDecimal price;
 
     private boolean SoldOut;
-
+    @NotBlank
     private int quantity;
 
     public CreateProductDto() {

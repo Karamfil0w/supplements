@@ -19,7 +19,7 @@ public class Order {
     private String email;
     @Column(nullable = false)
     private String address;
-    @OneToMany
+    @OneToMany(mappedBy = "order")
     private List<Product> products = new ArrayList<>();
 
     public Order() {

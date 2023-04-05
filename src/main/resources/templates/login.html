@@ -3,49 +3,48 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
 </head>
 <body>
 <nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/register">Register</a></li>
-    <li><a href="/login" class="active">Login</a></li>
-    <li><a href="/logout">Logout</a></li>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
+        <li sec:authorize="!isAuthenticated()"><a href="/login" class="active">Login</a></li>
 
-  </ul>
+    </ul>
 </nav>
 <div class="container">
-  <h2>Login</h2>
+    <h2>Login</h2>
 
-  <form th:action="@{/login}" th:method="POST"  >
+    <form th:action="@{/login}" th:method="POST">
 
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control"
-             id="username"
-             name="username" required
-              th:text="${username}"
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control"
+                   id="username"
+                   name="username" required
+                   th:text="${username}"
 
-      >
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control"
-             id="password"
-             name="password" required
-             th:text="${password}"
+            >
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control"
+                   id="password"
+                   name="password" required
+                   th:text="${password}"
 
-      >
-    </div>
-    <p th:if="${bad_credentials}" class="errors alert alert-danger">
-      Invalid username or password.
-    </p>
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
+            >
+        </div>
+        <p th:if="${bad_credentials}" class="errors alert alert-danger">
+            Invalid username or password.
+        </p>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
 </div>
 </body>
 </html>

@@ -45,9 +45,10 @@ public class ProductService {
 
         Product product = this.modelMapper.map(productDetailDto, Product.class);
         CategoryEnum type = CategoryEnum.valueOf(productDetailDto.getCategory());
-        Category category = new Category(type);
+        Category category = this.categoryService.findByType(type);
         product.setCategory(category);
-        productRepository.save(product);
+        product.setQuantity(product.getQuantity()+1);
+        this.productRepository.save(product);
     }
 
     public List<Product> findTop5Proteins() {
@@ -97,10 +98,11 @@ public class ProductService {
 
         Optional<Product> byId = this.productRepository.findById(productId);
 
-        byId.get().setQuantity(-1);
+        byId.get().setQuantity(byId.get().getQuantity() - 1);
         if (byId.get().getQuantity() == 0){
             byId.get().setSoldOut(true);
         }
+        this.productRepository.save(byId.get());
         return byId;
     }
 
@@ -155,14 +157,16 @@ public class ProductService {
         if (product == null) {
             return false;
         } else {
-            Category category = new Category(createProductDto.getCategory());
+            Category byType = this.categoryService.findByType(createProductDto.getCategory());
 
-
-            product.setCategory(category);
+            product.setCategory(byType);
 
             this.productRepository.save(product);
             return true;
         }
     }
 
+    public void save(Product product) {
+        this.productRepository.save(product);
+    }
 }

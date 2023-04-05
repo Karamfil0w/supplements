@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Supplement Store</title>
@@ -10,10 +11,10 @@
 <body>
 <nav>
     <ul>
-        <li><a href="/" >Home</a></li>
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/products" >Products</a></li>
         <li><a href="/register">Register</a></li>
         <li><a href="/login">Login</a></li>
-        <li><a href="/logout">Logout</a></li>
     </ul>
 </nav>
 <header>
@@ -32,16 +33,21 @@
 
     <h3>Categories</h3>
     <div class="category">
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).PROTEIN.name()})}">Protein Supplements</a>
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).PERFORMANCE.name()})}">Performance Supplements</a>
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).WEIGHT_MANAGEMENT.name()})}">Weight Management Supplements</a>
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).VITAMINS.name()})}">Vitamins & Minerals Supplements</a>
+        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).PROTEIN.name()})}">Protein
+            Supplements</a>
+        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).PERFORMANCE.name()})}">Performance
+            Supplements</a>
+        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).WEIGHT_MANAGEMENT.name()})}">Weight
+            Management Supplements</a>
+        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).VITAMINS.name()})}">Vitamins
+            & Minerals Supplements</a>
     </div>
 
 
-
     <h3>About Us</h3>
-    <p>We are a team of fitness enthusiasts who are passionate about helping our customers achieve their fitness goals. We believe in offering high-quality supplements at affordable prices, and providing excellent customer service.</p>
+    <p>We are a team of fitness enthusiasts who are passionate about helping our customers achieve their fitness goals.
+        We believe in offering high-quality supplements at affordable prices, and providing excellent customer
+        service.</p>
 </main>
 <footer>
     &copy; 2023 Supplement Store

@@ -30,7 +30,7 @@ public class ShoppingCartController {
             session.setAttribute("cart", cart);
         }
         model.addAttribute("cart", cart);
-        model.addAttribute("totalSum",cart.getTotalSum());
+        model.addAttribute("totalSum", cart.getTotalSum());
         return "cart";
     }
 
@@ -49,15 +49,23 @@ public class ShoppingCartController {
         return "redirect:/home";
     }
 
-@PostMapping("/remove")
-public String removeItem(@RequestParam("id") Long productId, HttpSession session) {
-    ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-    if (cart != null) {
-        List<Product> products = cart.getProducts();
-        products.removeIf(p -> p.getId().equals(productId));
-        session.setAttribute("cart", cart);
+    @PostMapping("/remove")
+    public String removeItem(@RequestParam("id") Long productId, HttpSession session) {
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        if (cart != null) {
+            List<Product> products = cart.getProducts();
+            for (Product product : products) {
+                if (product.getId().equals(productId)) {
+                    products.remove(product);
+                    product.setQuantity(product.getQuantity()+1);
+                    productService.save(product);
+                    break;
+                }
+            }
+//            products.removeIf(p -> p.getId().equals(productId));
+            session.setAttribute("cart", cart);
+        }
+        return "redirect:/cart";
     }
-    return "redirect:/cart";
-}
 
 }

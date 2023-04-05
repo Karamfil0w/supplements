@@ -1,10 +1,14 @@
 package com.example.supplements.web;
 
 import com.example.supplements.model.dtos.ProductDetailDto;
+import com.example.supplements.model.entities.Product;
 import com.example.supplements.model.entities.ShoppingCart;
 import com.example.supplements.services.ProductService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,41 +18,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 public class ProductController {
 
     private final ProductService productService;
+
 
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
     @GetMapping("/restock")
-    public String restock(){
+    public String restock() {
         productService.restock();
         return "redirect:/home";
     }
+
     @GetMapping("/products")
-    public String products(Model model){
-        model.addAttribute("allProteins",this.productService.findAllProteins());
+    public String products(Model model) {
+        model.addAttribute("allProteins", this.productService.findAllProteins());
 
-        model.addAttribute("allPerformance",this.productService.findAllPerformance());
+        model.addAttribute("allPerformance", this.productService.findAllPerformance());
 
-        model.addAttribute("allWeightManagement",this.productService.findAllWeightManagement());
+        model.addAttribute("allWeightManagement", this.productService.findAllWeightManagement());
 
-        model.addAttribute("allVitamins",this.productService.findAllVitamins());
+        model.addAttribute("allVitamins", this.productService.findAllVitamins());
 
         return "/products";
     }
+
     @GetMapping("/cart/add/{productId}")
     public String addToCart(@PathVariable("productId") Long productId,
                             HttpSession session) {
-        sessionCartWithProducts(productId, session);
-        return "redirect:/products";
-    }
-
-    private void sessionCartWithProducts(Long productId, HttpSession session) {
-        var product = productService.getProductById(productId);
+        Optional<Product> product = productService.getProductById(productId);
         if (product.isPresent()) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart == null) {
@@ -57,29 +61,34 @@ public class ProductController {
             }
             cart.addProduct(product);
         }
+        return "redirect:/products";
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/addProduct")
-    public String addProduct(){
+    public String addProduct(@AuthenticationPrincipal
+                                 UserDetails userDetails) {
+
         return "/addProduct";
     }
 
     @PostMapping("/addProduct")
     public String saveProduct(@Valid ProductDetailDto productDetailDto,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("productDetailDto",productDetailDto);
+                              RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("productDetailDto", productDetailDto);
             redirectAttributes.addAttribute
-                    ("org.springframework.validation.BindingResult.productDetailDto",bindingResult);
+                    ("org.springframework.validation.BindingResult.productDetailDto", bindingResult);
             return "redirect:/addProduct";
         }
         this.productService.addProduct(productDetailDto);
         return "redirect:/products";
     }
+
     @ModelAttribute("productDetailDto")
-    public ProductDetailDto initProduct(){
+    public ProductDetailDto initProduct() {
         return new ProductDetailDto();
     }
 }

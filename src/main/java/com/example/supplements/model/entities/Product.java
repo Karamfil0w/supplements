@@ -13,7 +13,7 @@ public class Product {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Category category;  //name, category, size, flavour, description, imageURL, price, soldOut
     @Column(nullable = false)
     private Double size;
@@ -32,6 +32,7 @@ public class Product {
     private boolean SoldOut;
 
     @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
     public Product() {
@@ -102,6 +103,9 @@ public class Product {
     }
 
     public void setSoldOut(boolean soldOut) {
+        if (this.quantity == 0){
+            soldOut = true;
+        }
         SoldOut = soldOut;
     }
 
@@ -119,6 +123,9 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        if (quantity>0){
+            setSoldOut(false);
+        }
     }
 
     public Order getOrder() {
