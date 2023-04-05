@@ -1,0 +1,27 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>All Proteins</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+
+<body>
+<nav>
+    <ul>
+        <li><a href="/" class="active">Home</a></li>
+        <li><a sec:authorize="isAuthenticated()"  th:href="@{/products}" >Products</a></li>
+        <li><a th:href="@{/register}">Register</a></li>
+        <li><a th:href="@{/login}">Login</a></li>
+    </ul>
+</nav>
+<div class="products-container">
+    <div th:each="product: ${allProteins}" class="product">
+        <h2 th:text="${product.name}">Product Name</h2>
+        <p th:text="${'$'+product.price}">Price: $XX.XX</p>
+        <div class="product-image" th:style="'background-image: url(' + ${product.imageURL} + ')'"></div>
+    </div>
+</div>
+</body>
+</html>

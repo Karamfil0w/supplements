@@ -30,6 +30,29 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("allProteins")
+    public String allProteins(Model model){
+        model.addAttribute("allProteins",productService.findAllProteins());
+        return "allProteins";
+    }
+    @GetMapping("allPerformance")
+    public String allPerformance(Model model){
+        model.addAttribute("allPerformance",productService.findAllPerformance());
+        return "allPerformance";
+    }
+    @GetMapping("allWeightManagement")
+    public String allWeightManagement(Model model){
+
+        model.addAttribute("allWeightManagement",productService.findAllWeightManagement());
+        return "allWeightManagement";
+    }
+    @GetMapping("allVitamins")
+    public String allVitamins(Model model){
+        model.addAttribute("allVitamins",productService.findAllVitamins());
+        return "allVitamins";
+    }
+
+
     @GetMapping("/logout")
     public String logout(){
         return "redirect:/";

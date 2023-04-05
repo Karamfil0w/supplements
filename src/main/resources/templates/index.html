@@ -24,22 +24,23 @@
     <h2>Welcome to our Supplement Store</h2>
     <p>We offer a wide range of supplements to help you reach your fitness goals.</p>
 
+<!--@TODO-->
     <h3>Featured Products</h3>
-    <div th:each="product : ${featuredProducts}" class="product">
-        <h3 th:text="${product.name}"></h3>
-        <p th:text="${product.description}"></p>
-        <p th:text="'$' + ${product.price}"></p>
-    </div>
+<!--    <div th:each="product : ${featuredProducts}" class="product">-->
+<!--        <h3 th:text="${product.name}"></h3>-->
+<!--        <p th:text="${product.description}"></p>-->
+<!--        <p th:text="'$' + ${product.price}"></p>-->
+<!--    </div>-->
 
     <h3>Categories</h3>
     <div class="category">
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).PROTEIN.name()})}">Protein
+        <a sec:authorize="isAnonymous()" th:href="@{/allProteins}">Protein
             Supplements</a>
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).PERFORMANCE.name()})}">Performance
+        <a sec:authorize="isAnonymous()" th:href="@{/allPerformance}">Performance
             Supplements</a>
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).WEIGHT_MANAGEMENT.name()})}">Weight
+        <a sec:authorize="isAnonymous()" th:href="@{/allWeightManagement}">Weight
             Management Supplements</a>
-        <a th:href="@{/products(category=${T(com.example.supplements.model.enums.CategoryEnum).VITAMINS.name()})}">Vitamins
+        <a sec:authorize="isAnonymous()" th:href="@{/allVitamins}">Vitamins
             & Minerals Supplements</a>
     </div>
 
