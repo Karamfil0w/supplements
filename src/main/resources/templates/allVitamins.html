@@ -19,8 +19,13 @@
 <div class="products-container">
     <div th:each="product: ${allVitamins}" class="product">
         <h2 th:text="${product.name}">Product Name</h2>
-        <p th:text="${'$'+product.price}">Price: $XX.XX</p>
         <div class="product-image" th:style="'background-image: url(' + ${product.imageURL} + ')'"></div>
+        <div class="mask">
+            <div class="mask-content">
+                <p th:text="${'$'+product.price}">Price: $XX.XX</p>
+                <button><a class="text-center" th:href="@{/productDetails/{id}(id=${product.id})}">Details</a></button>
+            </div>
+        </div>
     </div>
 </div>
 </body>

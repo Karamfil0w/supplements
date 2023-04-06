@@ -24,6 +24,9 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private String imageURL;
+
+    @Column(nullable = false)
+    private String ingredientsUrl;
     @Column(nullable = false)
     private BigDecimal price;
 
@@ -103,8 +106,10 @@ public class Product {
     }
 
     public void setSoldOut(boolean soldOut) {
-        if (this.quantity == 0){
+        if (this.quantity == 0) {
             soldOut = true;
+        } else if (this.quantity > 0){
+            soldOut = false;
         }
         SoldOut = soldOut;
     }
@@ -123,9 +128,6 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-        if (quantity>0){
-            setSoldOut(false);
-        }
     }
 
     public Order getOrder() {
@@ -134,5 +136,13 @@ public class Product {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public String getIngredientsUrl() {
+        return ingredientsUrl;
+    }
+
+    public void setIngredientsUrl(String ingredientsUrl) {
+        this.ingredientsUrl = ingredientsUrl;
     }
 }

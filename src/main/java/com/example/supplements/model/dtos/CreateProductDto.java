@@ -21,7 +21,10 @@ public class CreateProductDto {
     @NotBlank
     private String description;
     @NotBlank
+    private String ingredientsUrl;
+    @NotBlank
     private String imageURL;
+
     @NotBlank
     private BigDecimal price;
 
@@ -34,13 +37,14 @@ public class CreateProductDto {
 
     public CreateProductDto(String name, CategoryEnum category,
                             Double size, FlavourEnum flavor,
-                            String description, String imageURL, BigDecimal price, boolean soldOut, int quantity) {
+                            String description, String imageURL, String ingredientsUrl, BigDecimal price, boolean soldOut, int quantity) {
         this.name = name;
         this.category = category;
         this.size = size;
         this.flavor = flavor;
         this.description = description;
         this.imageURL = imageURL;
+        this.ingredientsUrl = ingredientsUrl;
         this.price = price;
         SoldOut = soldOut;
         this.quantity = quantity;
@@ -116,5 +120,13 @@ public class CreateProductDto {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getIngredientsUrl() {
+        return ingredientsUrl;
+    }
+
+    public void setIngredientsUrl(String ingredientsUrl) {
+        this.ingredientsUrl = ingredientsUrl;
     }
 }

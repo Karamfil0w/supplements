@@ -1,55 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <meta charset="UTF-8">
-  <title>Registration Form</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
 </head>
 <body>
 <nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li sec:authorize="!isAuthenticated()"><a href="/register" class="active">Register</a></li>
-    <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
-    <li sec:authorize="isAuthenticated()">
-      <form th:action="@{/logout}" th:method="POST">
-        <input type="submit" th:value="Logout"/>
-      </form>
-    </li>
-  </ul>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li sec:authorize="!isAuthenticated()"><a href="/register" class="active">Register</a></li>
+        <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+        <li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" th:method="POST">
+                <input type="submit" th:value="Logout"/>
+            </form>
+        </li>
+    </ul>
 </nav>
 
 
 <h1>Registration Form</h1>
 
 <form th:action="@{/register}" th:method="post" th:object="${userModel}">
-  <label for="username">Username:</label>
-  <input type="text" id="username"
-         name="username" required
-         th:field="*{username}"
-         th:errorclass="is-invalid">
+    <label for="username">Username:</label>
+    <input type="text" id="username"
+           name="username" required
+           th:field="*{username}"
+           th:errorclass="is-invalid">
+    <p class="invalid-feedback errors alert alert-danger">
+        Username is required and should be between 2 and 20 symbols.
+    </p>
 
-  <label for="password">Password:</label>
-  <input type="password" id="password"
-         name="password" required
-         th:field="*{password}"
-         th:errorclass="is-invalid">
+    <label for="password">Password:</label>
+    <input type="password" id="password"
+           name="password" required
+           th:field="*{password}"
+           th:errorclass="is-invalid">
+    <p class="invalid-feedback errors alert alert-danger">
+        Password is required and should be at least 5 symbols.
+    </p>
 
-  <label for="confirmPassword">Confirm Password:</label>
-  <input type="password" id="confirmPassword"
-         name="confirmPassword" required
-         th:field="*{confirmPassword}"
-         th:errorclass="is-invalid"
-  >
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword"
+           name="confirmPassword" required
+           th:field="*{confirmPassword}"
+           th:errorclass="is-invalid">
+    <p class="invalid-feedback errors alert alert-danger">
+        Passwords should match.
+    </p>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required
-         th:field="*{email}"
-         th:errorclass="is-invalid">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required
+           th:field="*{email}"
+           th:errorclass="is-invalid">
+    <p class="invalid-feedback errors alert alert-danger">
+        Email should be valid.
+    </p>
 
-  <input type="submit" value="Register">
+    <input type="submit" value="Register">
 </form>
 
 </body>

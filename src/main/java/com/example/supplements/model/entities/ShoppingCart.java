@@ -47,6 +47,7 @@ public class ShoppingCart {
 
     public void addProduct(Optional<Product> product) {
         List<Product> currentProducts = getProducts();
+//        product.get().setQuantity(product.get().getQuantity()-1);
         currentProducts.add(product.get());
     }
     public BigDecimal getTotalSum(){

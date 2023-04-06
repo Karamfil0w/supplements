@@ -34,12 +34,12 @@
 <div class="products-container">
     <div th:each="protein: ${TopProteins}" class="product">
         <h2 th:text="${protein.name}">Product Name</h2>
-        <p th:text="${protein.description}">Product Description</p>
+        <p th:text="${protein.flavor}">Product Flavor</p>
         <div class="product-image" th:style="'background-image: url(' + ${protein.imageURL} + ')'"></div>
         <div class="mask">
             <div class="mask-content">
                 <p th:text="${'$'+protein.price}">Price: $XX.XX</p>
-                <button><a th:href="@{/addToCart/{id}(id=${protein.id})}">Add to Cart</a></button>
+                <button><a class="text-center" th:href="@{/cart/add/{id}(id=${protein.id})}">Add to Cart</a></button>
             </div>
         </div>
     </div>
@@ -48,12 +48,13 @@
 <div class="products-container">
     <div th:each="perform: ${TopPerformance}" class="product">
         <h2 th:text="${perform.name}">Product Name</h2>
-        <p th:text="${perform.description}">Product Description</p>
+        <p th:text="${perform.flavor}">Product Flavor</p>
         <div class="product-image" th:style="'background-image: url(' + ${perform.imageURL} + ')'"></div>
         <div class="mask">
             <div class="mask-content">
                 <p th:text="${'$'+perform.price}">Price: $XX.XX</p>
-                <button><a th:href="@{/addToCart/{id}(id=${perform.id})}">Add to Cart</a></button>
+                <button><a class="text-center" th:href="@{/cart/add/{id}(id=${perform.id})}">Add to Cart</a></button>
+
             </div>
         </div>
     </div>
@@ -62,12 +63,12 @@
 <div class="products-container">
     <div th:each="weight: ${TopWeightManagement}" class="product">
         <h2 th:text="${weight.name}">Product Name</h2>
-        <p th:text="${weight.description}">Product Description</p>
+        <p th:text="${weight.flavor}">Product Flavor</p>
         <div class="product-image" th:style="'background-image: url(' + ${weight.imageURL} + ')'"></div>
         <div class="mask">
             <div class="mask-content">
                 <p th:text="${'$'+weight.price}">Price: $XX.XX</p>
-                <button><a th:href="@{/addToCart/{id}(id=${weight.id})}">Add to Cart</a></button>
+                <button><a class="text-center" th:href="@{/cart/add/{id}(id=${weight.id})}">Add to Cart</a></button>
             </div>
         </div>
     </div>
@@ -76,12 +77,12 @@
 <div class="products-container">
     <div th:each="vitamin: ${TopVitamins}" class="product">
         <h2 th:text="${vitamin.name}">Product Name</h2>
-        <p th:text="${vitamin.description}">Product Description</p>
+        <p th:text="${vitamin.flavor}">Product Flavor</p>
         <div class="product-image" th:style="'background-image: url(' + ${vitamin.imageURL} + ')'"></div>
         <div class="mask">
             <div class="mask-content">
                 <p th:text="${'$'+vitamin.price}">Price: $XX.XX</p>
-                <button><a th:href="@{/addToCart/{id}(id=${vitamin.id})}">Add to Cart</a></button>
+                <button><a class="text-center" th:href="@{/cart/add/{id}(id=${vitamin.id})}">Add to Cart</a></button>
             </div>
         </div>
     </div>

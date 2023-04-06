@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 @PasswordMatch(password = "password", confirmPassword = "confirmPassword")
 public class UserRegistrationDto {
-    @Size(min = 3, message = "Username must be at least 3 letters long")
+    @Size(min = 2, max = 20, message = "Username must be at least 3 letters long")
     @NotBlank
     private String username;
     @Email(message = "Please enter a valid email address")

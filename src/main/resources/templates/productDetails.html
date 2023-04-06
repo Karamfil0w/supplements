@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<nav>
+    <ul>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/}">Home</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/home}">Home</a></li>
+        <li><a th:href="@{/products}" class="active">Products</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+        <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/addProduct}">Add Product</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="/cart">Cart</a></li>
+        <li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" th:method="POST">
+                <input type="submit" th:value="Logout"/>
+            </form>
+        </li>
+    </ul>
+</nav>
+<h1 th:text="${product.name}">Product Name</h1>
+<div class="container">
+    <img th:src="${product.ingredientsUrl}" alt="Product Image">
+    <img th:src="${product.imageURL}" alt="Ingredients">
+    <p th:text="${'Description: '+product.description}">Product Description</p>
+    <p th:text="${'Size: '+product.size}">Product Size</p>
+    <p th:text="${'Flavor: '+product.flavor}">Product flavor</p>
+    <p th:text="${'$'+product.price}">Price: $XX.XX</p>
+    <form th:action="@{/cart/add}" method="post" sec:authorize="isAuthenticated()">
+        <input type="hidden" name="productId" th:value="${product.id}" />
+        <button><a class="text-center" th:href="@{/cart/add/{id}(id=${product.id})}">Add to Cart</a></button>
+    </form>
+</div>
+</body>
+</html>

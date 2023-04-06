@@ -44,8 +44,11 @@ public class ShoppingCartController {
                 cart = new ShoppingCart();
                 session.setAttribute("cart", cart);
             }
+            product.get().setQuantity(product.get().getQuantity()-1);
+            productService.save(product.get());
             cart.addProduct(product);
         }
+
         return "redirect:/home";
     }
 
@@ -56,9 +59,11 @@ public class ShoppingCartController {
             List<Product> products = cart.getProducts();
             for (Product product : products) {
                 if (product.getId().equals(productId)) {
-                    products.remove(product);
+
                     product.setQuantity(product.getQuantity()+1);
+
                     productService.save(product);
+                    products.remove(product);
                     break;
                 }
             }

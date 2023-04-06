@@ -59,9 +59,11 @@ public class ProductController {
                 cart = new ShoppingCart();
                 session.setAttribute("cart", cart);
             }
+            product.get().setQuantity(product.get().getQuantity()-1);
+            productService.save(product.get());
             cart.addProduct(product);
         }
-        return "redirect:/products";
+        return "redirect:/cart";
     }
 
 
@@ -85,6 +87,17 @@ public class ProductController {
         }
         this.productService.addProduct(productDetailDto);
         return "redirect:/products";
+    }
+
+    @GetMapping("/productDetails/{id}")
+    public String getProductDetails(@PathVariable("id") Long id, Model model) {
+        // retrieve the product from the database
+        Optional<Product> product = this.productService.getProductById(id);
+
+        // add the product to the model
+        model.addAttribute("product", product.get());
+
+        return "productDetails";
     }
 
     @ModelAttribute("productDetailDto")

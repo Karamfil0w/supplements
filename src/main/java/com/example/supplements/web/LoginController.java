@@ -10,12 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class LoginController {
 
-
-//    @ModelAttribute("userLoginDto")
-//    public UserLoginDto initUserLoginDto() {
-//        return new UserLoginDto();
-//    }
-
     @GetMapping("/login")
     public String getLogin() {
         return "/login";

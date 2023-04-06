@@ -12,6 +12,8 @@ public class ProductDetailDto {
     private FlavourEnum flavor;
     private String description;
     private String imageURL;
+
+    private String ingredientsUrl;
     private BigDecimal price;
     private boolean SoldOut;
 
@@ -20,13 +22,14 @@ public class ProductDetailDto {
 
     public ProductDetailDto(Long id, String name, Double size,
                             FlavourEnum flavor, String description,
-                            String imageURL, BigDecimal price, boolean soldOut) {
+                            String imageURL, String ingredientsUrl, BigDecimal price, boolean soldOut) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.flavor = flavor;
         this.description = description;
         this.imageURL = imageURL;
+        this.ingredientsUrl = ingredientsUrl;
         this.price = price;
         SoldOut = soldOut;
     }
@@ -101,5 +104,13 @@ public class ProductDetailDto {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getIngredientsUrl() {
+        return ingredientsUrl;
+    }
+
+    public void setIngredientsUrl(String ingredientsUrl) {
+        this.ingredientsUrl = ingredientsUrl;
     }
 }

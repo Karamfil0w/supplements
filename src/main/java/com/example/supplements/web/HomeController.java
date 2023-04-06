@@ -2,6 +2,7 @@ package com.example.supplements.web;
 
 import com.example.supplements.services.CategoryService;
 import com.example.supplements.services.ProductService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ public class HomeController {
         this.categoryService = categoryService;
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/home")
     public String home(Model model){
 
