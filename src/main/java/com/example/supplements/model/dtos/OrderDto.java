@@ -1,28 +1,17 @@
-package com.example.supplements.model.entities;
+package com.example.supplements.model.dtos;
 
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "orders")
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OrderDto {
     private Long id;
-    @Column(nullable = false)
-    private String firstName;
-    @Column(nullable = false)
-    private String lastName;
-    @Column(nullable = false)
-    private String email;
-    @Column(nullable = false)
-    private String address;
-    @OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
-    private List<Product> products = new ArrayList<>();
 
-    public Order() {
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String address;
+    private List<ProductDto> products;
+
+    public OrderDto() {
     }
 
     public Long getId() {
@@ -65,11 +54,11 @@ public class Order {
         this.address = address;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductDto> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductDto> products) {
         this.products = products;
     }
 }

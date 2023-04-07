@@ -13,11 +13,27 @@
 </head>
 
 <body>
+<nav>
+    <ul>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/}">Home</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/home}">Home</a></li>
+        <li><a th:href="@{/products}" class="active">Products</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+        <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/addProduct}">Add Product</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="/cart">Cart</a></li>
+        <li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" th:method="POST">
+                <input type="submit" th:value="Logout"/>
+            </form>
+        </li>
+    </ul>
+</nav>
 
 
 
 <div class="container-fluid">
-    <h5 class="text-center text-white mt-5">
+    <h5 class="table-sub-heading-color">
         UUUUPS!!!! You have no permission to perform this operation.
 
     </h5>

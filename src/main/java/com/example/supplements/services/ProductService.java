@@ -125,4 +125,8 @@ public class ProductService {
     public void save(Product product) {
         this.productRepository.save(product);
     }
+
+    public void delete(Product product) {
+        this.productRepository.delete(product);
+    }
 }

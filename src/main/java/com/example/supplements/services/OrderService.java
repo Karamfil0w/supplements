@@ -8,13 +8,16 @@ import com.example.supplements.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final ProductService productService;
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository, ProductService productService) {
         this.orderRepository = orderRepository;
+        this.productService = productService;
     }
 
     public void createOrder(MakeOrderDto makeOrderDto, ShoppingCart shoppingCart) {
@@ -32,4 +35,15 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    public List<Order> getAllOrders() {
+        return this.orderRepository.findAll();
+    }
+
+    public Optional<Order> findById(Long orderId) {
+        return this.orderRepository.findById(orderId);
+    }
+
+    public void delete(Order order) {
+        this.orderRepository.delete(order);
+    }
 }
