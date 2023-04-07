@@ -106,11 +106,6 @@ public class Product {
     }
 
     public void setSoldOut(boolean soldOut) {
-        if (this.quantity == 0) {
-            soldOut = true;
-        } else if (this.quantity > 0){
-            soldOut = false;
-        }
         SoldOut = soldOut;
     }
 
@@ -127,6 +122,11 @@ public class Product {
     }
 
     public void setQuantity(int quantity) {
+        if (quantity == 0){
+            setSoldOut(true);
+        } else {
+            setSoldOut(false);
+        }
         this.quantity = quantity;
     }
 

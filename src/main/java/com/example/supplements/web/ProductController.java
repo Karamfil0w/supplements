@@ -2,9 +2,8 @@ package com.example.supplements.web;
 
 import com.example.supplements.model.dtos.ProductDetailDto;
 import com.example.supplements.model.entities.Product;
-import com.example.supplements.model.entities.ShoppingCart;
+import com.example.supplements.services.ProductPopulationService;
 import com.example.supplements.services.ProductService;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,20 +23,23 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
+    private final ProductPopulationService productPopulationService;
 
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ProductPopulationService productPopulationService) {
         this.productService = productService;
+        this.productPopulationService = productPopulationService;
     }
 
     @GetMapping("/restock")
     public String restock() {
-        productService.restock();
+        productPopulationService.restock();
         return "redirect:/home";
     }
 
     @GetMapping("/products")
     public String products(Model model) {
+
         model.addAttribute("allProteins", this.productService.findAllProteins());
 
         model.addAttribute("allPerformance", this.productService.findAllPerformance());
@@ -49,28 +51,12 @@ public class ProductController {
         return "/products";
     }
 
-    @GetMapping("/cart/add/{productId}")
-    public String addToCart(@PathVariable("productId") Long productId,
-                            HttpSession session) {
-        Optional<Product> product = productService.getProductById(productId);
-        if (product.isPresent()) {
-            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            if (cart == null) {
-                cart = new ShoppingCart();
-                session.setAttribute("cart", cart);
-            }
-            product.get().setQuantity(product.get().getQuantity()-1);
-            productService.save(product.get());
-            cart.addProduct(product);
-        }
-        return "redirect:/cart";
-    }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/addProduct")
     public String addProduct(@AuthenticationPrincipal
-                                 UserDetails userDetails) {
+                             UserDetails userDetails) {
 
         return "/addProduct";
     }
