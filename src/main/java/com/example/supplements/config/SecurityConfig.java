@@ -31,10 +31,11 @@ public class SecurityConfig {
                 // allow access to all static files (images, CSS, js)
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // the URL-s below are available for all users - logged in and anonymous
-                        requestMatchers("/", "/login","/home", "/register","/products",
+                        requestMatchers("/", "/login","/home","/register","/products",
                         "/login-error", "/products/all","/checkout",
                         "/allProteins","/allPerformance",
-                        "/allVitamins","/allWeightManagement","/productDetails/*").permitAll().
+                        "/allVitamins","/allWeightManagement","/productDetails/*",
+                         "/maintenance").permitAll().
                 anyRequest().authenticated().
                 and().
                 // configure login with HTML form
