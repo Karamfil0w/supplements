@@ -19,7 +19,10 @@ public class Order {
     private String email;
     @Column(nullable = false)
     private String address;
-    @OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @JoinTable(name = "products_orders",
+    joinColumns = @JoinColumn(name = "order_id"),
+    inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products = new ArrayList<>();
 
     public Order() {

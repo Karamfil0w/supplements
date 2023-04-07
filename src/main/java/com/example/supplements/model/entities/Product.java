@@ -4,6 +4,7 @@ import com.example.supplements.model.enums.FlavourEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -34,16 +35,12 @@ public class Product {
     @Column(nullable = false)
     private boolean SoldOut;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToMany(mappedBy = "products",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    private List<Order> orders;
 
     public Product() {
     }
 
-    public Product(Order order) {
-        this.order = order;
-    }
 
     public Long getId() {
         return id;
@@ -130,19 +127,19 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public String getIngredientsUrl() {
         return ingredientsUrl;
     }
 
     public void setIngredientsUrl(String ingredientsUrl) {
         this.ingredientsUrl = ingredientsUrl;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
