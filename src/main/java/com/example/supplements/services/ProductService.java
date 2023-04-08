@@ -11,6 +11,7 @@ import com.example.supplements.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -131,6 +132,15 @@ public class ProductService {
     }
 
     public List<Product> getFiveRandomProducts() {
-        return this.productRepository.getFiveRandomProducts();
+        List<Product> discountProducts = new ArrayList<>();
+
+        List<Product> fiveRandomProducts = this.productRepository.getFiveRandomProducts();
+        for (Product randomProduct : fiveRandomProducts) {
+            randomProduct.setPrice(randomProduct.getPrice().divide(BigDecimal.valueOf(2)));
+            discountProducts.add(randomProduct);
+        }
+
+
+        return discountProducts;
     }
 }
