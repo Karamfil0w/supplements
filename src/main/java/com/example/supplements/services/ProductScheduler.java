@@ -17,7 +17,7 @@ public class ProductScheduler {
         this.productService = productService;
     }
     List<Product> featuredProducts = new ArrayList<>();
-    @Scheduled(cron = "* * */1 * * * ") // Run every minute
+    @Scheduled(fixedDelay = 3600000) // Run every hour
     public void updateFeaturedProducts() {
         List<Product> products = productService.getFiveRandomProducts();
         featuredProducts.clear();
