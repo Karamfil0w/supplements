@@ -1,6 +1,5 @@
 package com.example.supplements.services;
 
-import com.example.supplements.model.dtos.MakeOrderDto;
 import com.example.supplements.model.dtos.UserRegistrationDto;
 import com.example.supplements.model.entities.User;
 import com.example.supplements.repositories.UserRepository;
@@ -24,8 +23,6 @@ public class UserService {
 
         this.userRepository = userRepository;
         this.userDetailsService = userDetailsService;
-
-
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -61,7 +58,4 @@ public class UserService {
                 setAuthentication(auth);
     }
 
-    public void makeOrder(MakeOrderDto makeOrderDto) {
-        //TODO
-    }
 }

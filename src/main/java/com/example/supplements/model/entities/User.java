@@ -47,8 +47,9 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
+    public User setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     public String getEmail() {
@@ -63,16 +64,18 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public List<UserRoleEntity> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRoleEntity> userRoles) {
+    public User setUserRoles(List<UserRoleEntity> userRoles) {
         this.userRoles = userRoles;
+        return this;
     }
 
     public ShoppingCart getShoppingCart() {

@@ -7,7 +7,6 @@ import com.example.supplements.model.entities.User;
 import com.example.supplements.model.enums.CategoryEnum;
 import com.example.supplements.model.enums.UserRoleEnum;
 import com.example.supplements.repositories.ProductRepository;
-import com.example.supplements.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +18,16 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
-    private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
     private final CategoryService categoryService;
-    private final ShoppingCartService cartService;
 
-    public ProductService(UserRepository userRepository, ProductRepository productRepository, ModelMapper modelMapper, CategoryService categoryService, ShoppingCartService cartService) {
-        this.userRepository = userRepository;
+    public ProductService(ProductRepository productRepository, ModelMapper modelMapper,
+                          CategoryService categoryService) {
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
         this.categoryService = categoryService;
-        this.cartService = cartService;
+
     }
 
     private boolean isAdmin(User user) {
@@ -140,7 +137,6 @@ public class ProductService {
             randomProduct.setPrice(randomProduct.getPrice().divide(BigDecimal.valueOf(2)));
             discountProducts.add(randomProduct);
         }
-
         return discountProducts;
     }
 }

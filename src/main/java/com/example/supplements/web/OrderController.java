@@ -6,10 +6,8 @@ import com.example.supplements.model.entities.Product;
 import com.example.supplements.model.entities.ShoppingCart;
 import com.example.supplements.services.OrderService;
 import com.example.supplements.services.ProductService;
-import com.example.supplements.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,16 +23,15 @@ import java.util.Optional;
 @Controller
 public class OrderController {
 
-    private final UserService userService;
+
     private final OrderService orderService;
     private final ProductService productService;
-    private final ModelMapper modelMapper;
 
-    public OrderController(UserService userService, OrderService orderService, ProductService productService, ModelMapper modelMapper) {
-        this.userService = userService;
+    public OrderController(OrderService orderService, ProductService productService) {
+
         this.orderService = orderService;
         this.productService = productService;
-        this.modelMapper = modelMapper;
+
     }
 
     @ModelAttribute("makeOrderDto")

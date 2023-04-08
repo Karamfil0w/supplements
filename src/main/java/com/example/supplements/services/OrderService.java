@@ -13,11 +13,11 @@ import java.util.Optional;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final ProductService productService;
 
-    public OrderService(OrderRepository orderRepository, ProductService productService) {
+
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.productService = productService;
+
     }
 
     public void createOrder(MakeOrderDto makeOrderDto, ShoppingCart shoppingCart) {
