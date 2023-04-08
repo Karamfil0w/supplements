@@ -1,20 +1,34 @@
 package com.example.supplements.web;
 
+import com.example.supplements.model.entities.Product;
 import com.example.supplements.services.CategoryService;
+import com.example.supplements.services.ProductScheduler;
 import com.example.supplements.services.ProductService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
     private final ProductService productService;
     private final CategoryService categoryService;
 
-    public HomeController(ProductService productService, CategoryService categoryService) {
+    private final ProductScheduler productScheduler;
+
+    public HomeController(ProductService productService, CategoryService categoryService, ProductScheduler productScheduler) {
         this.productService = productService;
         this.categoryService = categoryService;
+        this.productScheduler = productScheduler;
+    }
+    @PreAuthorize("isAnonymous()")
+    @GetMapping("/")
+    public String homeNotLoggedIn(Model model) {
+        List<Product> featuredProducts = productService.getFiveRandomProducts();
+        model.addAttribute("featuredProducts", featuredProducts);
+        return "index";
     }
 
     @PreAuthorize("isAuthenticated()")

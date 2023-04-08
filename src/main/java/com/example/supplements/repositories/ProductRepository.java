@@ -20,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>,
 //            nativeQuery = true)
 //    List<Product> get5RandomProductsByCategoryType(CategoryEnum categoryEnum);
 
-    @Query(value = "SELECT p FROM Product as p ORDER BY RAND() LIMIT 5",
+    @Query(value = "SELECT * FROM supplements.products ORDER BY RAND() LIMIT 5",
             nativeQuery = true)
     List<Product> getFiveRandomProducts();
 

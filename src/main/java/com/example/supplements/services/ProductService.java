@@ -129,4 +129,8 @@ public class ProductService {
     public void delete(Product product) {
         this.productRepository.delete(product);
     }
+
+    public List<Product> getFiveRandomProducts() {
+        return this.productRepository.getFiveRandomProducts();
+    }
 }
