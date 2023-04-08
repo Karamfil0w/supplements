@@ -1,8 +1,0 @@
-<nav>
-  <ul>
-    <li><a href="/" th:classappend="${currentPath == '/' ? 'active' : ''}">Home</a></li>
-    <li><a href="/register" th:classappend="${currentPath == '/register' ? 'active' : ''}">Register</a></li>
-    <li><a href="/login" th:classappend="${currentPath == '/login' ? 'active' : ''}">Login</a></li>
-    <li><a href="/logout" th:if="${isLoggedIn}">Logout</a></li>
-  </ul>
-</nav>

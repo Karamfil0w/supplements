@@ -1,4 +1,5 @@
 package com.example.supplements.model.dtos;
+
 import com.example.supplements.model.enums.CategoryEnum;
 import com.example.supplements.model.enums.FlavourEnum;
 import jakarta.validation.constraints.NotBlank;
@@ -28,7 +29,6 @@ public class CreateProductDto {
     @NotBlank
     private BigDecimal price;
 
-    private boolean SoldOut;
     @NotBlank
     private int quantity;
 
@@ -37,7 +37,8 @@ public class CreateProductDto {
 
     public CreateProductDto(String name, CategoryEnum category,
                             Double size, FlavourEnum flavor,
-                            String description, String imageURL, String ingredientsUrl, BigDecimal price, boolean soldOut, int quantity) {
+                            String description, String imageURL, String ingredientsUrl, BigDecimal price,
+                            int quantity) {
         this.name = name;
         this.category = category;
         this.size = size;
@@ -46,7 +47,6 @@ public class CreateProductDto {
         this.imageURL = imageURL;
         this.ingredientsUrl = ingredientsUrl;
         this.price = price;
-        SoldOut = soldOut;
         this.quantity = quantity;
     }
 
@@ -106,13 +106,6 @@ public class CreateProductDto {
         this.price = price;
     }
 
-    public boolean isSoldOut() {
-        return SoldOut;
-    }
-
-    public void setSoldOut(boolean soldOut) {
-        SoldOut = soldOut;
-    }
 
     public int getQuantity() {
         return quantity;

@@ -45,7 +45,7 @@ public class ProductService {
         CategoryEnum type = CategoryEnum.valueOf(productDetailDto.getCategory());
         Category category = this.categoryService.findByType(type);
         product.setCategory(category);
-//        product.setQuantity(product.getQuantity() + 1);
+
         this.productRepository.save(product);
     }
 
@@ -132,6 +132,7 @@ public class ProductService {
     }
 
     public List<Product> getFiveRandomProducts() {
+
         List<Product> discountProducts = new ArrayList<>();
 
         List<Product> fiveRandomProducts = this.productRepository.getFiveRandomProducts();
@@ -139,7 +140,6 @@ public class ProductService {
             randomProduct.setPrice(randomProduct.getPrice().divide(BigDecimal.valueOf(2)));
             discountProducts.add(randomProduct);
         }
-
 
         return discountProducts;
     }

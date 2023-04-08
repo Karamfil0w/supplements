@@ -90,12 +90,13 @@
                name="price" step=".01" min="0" required>
     </div>
     <div>
-        <label for="soldOut">Sold Out:</label>
-        <input type="checkbox" id="soldOut"
-               th:field="*{soldOut}"
-               name="soldOut">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity"
+               th:field="*{quantity}"
+               name="quantity">
     </div>
     <button type="submit">Save Product</button>
 </form>
+<div th:replace="~{fragments/footer}" > </div>
 </body>
 </html>
