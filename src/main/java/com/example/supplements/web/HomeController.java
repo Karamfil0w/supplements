@@ -26,7 +26,7 @@ public class HomeController {
     @PreAuthorize("isAnonymous()")
     @GetMapping("/")
     public String homeNotLoggedIn(Model model) {
-        List<Product> featuredProducts = productService.getFiveRandomProducts();
+        List<Product> featuredProducts = productScheduler.getFeaturedProducts();
         model.addAttribute("featuredProducts", featuredProducts);
         return "index";
     }
