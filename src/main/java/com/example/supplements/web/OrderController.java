@@ -52,22 +52,11 @@ public class OrderController {
 
     @PostMapping("/confirm-order")
     public String confirmOrder(@RequestParam Long orderId) {
-        Optional<Order> optionalOrder = orderService.findById(orderId);
-
-        if (optionalOrder.isPresent()) {
-            Order order = optionalOrder.get();
-
-            List<Product> products = order.getProducts();
-            for (Product product : products) {
-                if (product.isSoldOut()) {
-                    this.productService.delete(product);
-                }
-            }
-
-            this.orderService.delete(order);
-        }
+        orderService.confirmOrderFromAdmin(orderId);
         return "redirect:/orders";
     }
+
+
 
 
     @GetMapping("/checkout")

@@ -22,7 +22,6 @@ public class ProductScheduler {
         List<Product> products = productService.getFiveRandomProducts();
         featuredProducts.clear();
         featuredProducts.addAll(products);
-//        logger.info("Featured products updated: {}", featuredProducts);
     }
 
     public List<Product> getFeaturedProducts() {

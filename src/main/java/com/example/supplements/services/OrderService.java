@@ -5,6 +5,7 @@ import com.example.supplements.model.entities.Order;
 import com.example.supplements.model.entities.Product;
 import com.example.supplements.model.entities.ShoppingCart;
 import com.example.supplements.repositories.OrderRepository;
+import com.example.supplements.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +14,13 @@ import java.util.Optional;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private ProductRepository productRepository;
 
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
 
+        this.productRepository = productRepository;
     }
 
     public void createOrder(MakeOrderDto makeOrderDto, ShoppingCart shoppingCart) {
@@ -35,6 +38,21 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    public void confirmOrderFromAdmin(Long orderId) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+
+        if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+
+            List<Product> products = order.getProducts();
+            for (Product product : products) {
+                if (product.isSoldOut()) {
+                    this.productRepository.delete(product);
+                }
+            }
+            this.orderRepository.delete(order);
+        }
+    }
     public List<Order> getAllOrders() {
         return this.orderRepository.findAll();
     }
